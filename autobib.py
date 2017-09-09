@@ -98,9 +98,6 @@ def query_google_folder(folder, use_backup):
     files = utils.guess_manual_files(folder, db, update_queried_db=False)
     utils.add_skip_files(folder, files)
 
-    import pdb
-    pdb.set_trace()
-
     for path in utils.get_pdf_list(folder):
         file = os.path.basename(path)
         parsed = nomenclature.parse_filename(file)
