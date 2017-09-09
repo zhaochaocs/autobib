@@ -48,6 +48,8 @@ def query_crossref_folder(folder, use_backup):
     rejected = []
 
     # For each pdf in the folder
+    import pdb
+    pdb.set_trace()
     for path in utils.get_pdf_list(folder):
         file = os.path.basename(path)
         parsed = nomenclature.parse_filename(file)
@@ -95,6 +97,9 @@ def query_google_folder(folder, use_backup):
     db = utils.read_bib_file(os.path.join(folder, '.queried.bib'))
     files = utils.guess_manual_files(folder, db, update_queried_db=False)
     utils.add_skip_files(folder, files)
+
+    import pdb
+    pdb.set_trace()
 
     for path in utils.get_pdf_list(folder):
         file = os.path.basename(path)
@@ -436,6 +441,8 @@ if __name__ == "__main__":
         config.crossref_accept_threshold = args.tol
         config.use_utf8_characters = bool(args.utf8)
         # If input path is a bib file
+        # import pdb
+        # pdb.set_trace()
         if input_path.endswith('.bib'):
             assert os.path.isfile(input_path)
             # Format biblio

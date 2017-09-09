@@ -124,7 +124,10 @@ def crossref_query(authors, title):
     res_bib = db.entries[0]
 
     # If article has subtitle(s), fix bibtex entry
-    subtitles = [x for x in res_json['subtitle'] if not str.isupper(x)]
+    if 'subtitle' in res_json:
+	    subtitles = [x for x in res_json['subtitle'] if not str.isupper(x)]
+    else:
+	    subtitles = []
     if len(subtitles) > 0:
         # Discard subtitle that are all uppercase
         title = ' '.join(res_json['title'])

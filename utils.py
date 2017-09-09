@@ -51,8 +51,11 @@ def strip_accents(s):
 
 
 def has_pdfs(folder):
-    return (os.path.exists(os.path.join(folder, '.biblist')) or
-            len(glob.glob(os.path.join(folder, "*.pdf"))) > 0)
+    return (
+        os.path.exists(os.path.join(folder, '.biblist')) or
+        os.path.exists(os.path.join(folder, 'paper_list.txt')) or
+        len(glob.glob(os.path.join(folder, "*.pdf"))) > 0
+    )
 
 
 def simratio(file1, file2):
@@ -105,6 +108,16 @@ def get_pdf_list(folder):
         with open(biblist_file, 'r') as f:
             for l in f:
                 all_pdfs.append(l.rstrip())
+    paper_list = os.path.join(folder, 'paper_list.txt')
+    if os.path.exists(paper_list):
+        with open(paper_list, 'r') as f:
+            for l in f:
+                l = l.strip()
+                if not l:
+                    continue
+                if l[-1] == '.':
+                    l = l[:-1]
+                all_pdfs.append(l.rstrip()+'.pdf')
     return sorted(all_pdfs)
 
 

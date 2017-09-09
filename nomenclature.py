@@ -164,7 +164,7 @@ def gen_bibkey(record, all_keys):
     short_title = short_title[:3].upper()
 
     # Key is Author:Year:Initials
-    basekey = last_name + ":" + record_copy['year'] + ":" + short_title
+    basekey = last_name + record_copy['year'] + short_title
     bibkey = basekey
 
     # Assign a unique key
